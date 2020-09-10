@@ -9,7 +9,9 @@ function App() {
             <Switch>
                 <Route exact path="/">
                     <LoginPage />
+                    
                 </Route>
+               
             </Switch>
         </Router>
     );
