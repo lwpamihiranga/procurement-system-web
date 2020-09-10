@@ -22,7 +22,7 @@ steps:
 
 - task: SonarQubePrepare@4
   inputs:
-    SonarQube: 'sonarqube-server-web'
+    SonarQube: 'sonarqube-server'
     scannerMode: 'CLI'
     configMode: 'manual'
     cliProjectKey: 'procurement-system-key'
