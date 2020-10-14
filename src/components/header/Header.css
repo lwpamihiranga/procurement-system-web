@@ -1,0 +1,40 @@
+.navbar-light {
+    background-color: rgba(0, 0, 0, 0.2);
+    float: none;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+}
+.logout-div {
+    margin-right: 30px;
+}
+.navbar-text {
+    color: rgba(0, 0, 0, 1) !important;
+    font-size: 9pt;
+}
+img {
+    width: 50px;
+}
+.navbar-brand {
+    padding-left: 250px;
+    color: rgba(255, 255, 255, 1) !important;
+    font-size: 20pt;
+}
+.btn-sm {
+    color: white;
+    float: none;
+    background-color: #d47380;
+    border: none;
+    opacity: 0.9;
+    padding: 0.25rem 1rem !important;
+}
+.btn-sm:hover {
+    color: white;
+    opacity: 1;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+.navbar {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+.scroll {
+    background-color: #d47380;
+}
