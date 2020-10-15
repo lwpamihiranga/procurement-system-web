@@ -11,6 +11,7 @@ function ApproveRequisition() {
     const [siteManager, setSiteManger] = useState('');
     const [supplier, setSupplier] = useState('');
     const [site, setSite] = useState('');
+    const [total, setTotal] = useState('');
 
     useEffect(() => {
         axios
@@ -22,6 +23,12 @@ function ApproveRequisition() {
                 setSupplier(res.data.supplier);
                 setSite(res.data.site);
                 console.log(res.data);
+
+                let total = 0;
+                res.data.purchaseRequisitionItems.forEach(item => {
+                    total = total + (item.itemCount * item.item.itemPrice)
+                });
+                setTotal(total);
             })
             .catch((err) => {
                 console.log(err);
@@ -120,16 +127,16 @@ function ApproveRequisition() {
                     {itemList.map((value, key) => (
                         <tr key={key}>
                             <td>{value.itemId}</td>
-                            <td>{value.item.itemPrice}</td>
+                            <td>{(value.item.itemPrice).toFixed(2)}</td>
                             <td>{value.itemCount}</td>
-                            <td>calculate total here</td>
+                            <td>{(value.item.itemPrice * value.itemCount).toFixed(2)}</td>
                         </tr>
                     ))}
                     <tr>
                         <td></td>
                         <td></td>
                         <td>Total</td>
-                        <td>total here</td>
+                        <td>{parseFloat(total).toFixed(2)}</td>
                     </tr>
                 </tbody>
             </table>
