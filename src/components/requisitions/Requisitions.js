@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 function Requisitions() {
     const url = process.env.REACT_APP_BACKEND_API;
+    const history = useHistory();
 
     const [list, setList] = useState([]);
 
@@ -10,52 +12,42 @@ function Requisitions() {
         axios
             .get(url.concat('/api/purchaseRequisitions'))
             .then((res) => {
-                console.log('DATA :'+res.data[0]);
+                console.log('DATA :' + res.data[0]);
                 setList(res.data);
             })
             .catch((err) => {
-                console.log('ERR :'+err);
+                console.log('ERR :' + err);
             });
     }, [url]);
 
-    
     const viewDetails = (id) => {
-       
+        history.push(`/requisitions/${id}`);
     };
 
     return (
-        <div className="main-container" style={{marginLeft:250}}>
-            <br/><h2>Requisition List</h2><br/>
-            <table className="table table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">Requisition Number</th>
-                        <th scope="col">Comments</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">View</th>
-                       
-                    </tr>
-                </thead>
-                <tbody>
-                    {list.map((value, key) => (
-                        <tr key={key}>
-                            <td>{value.requisitionNo}</td>
-                            <td>{value.comments}</td>
-                            <td>{value.status}</td>
-                            <td>
-                                <button
-                                    className="btn btn-success"
-                                    onClick={() =>
-                                        viewDetails(value.requisitionNo)
-                                    }
-                                >
-                                    View
-                                </button>
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
+        <div className="container" style={{ marginLeft: 250 }}>
+            <br />
+            <h2>Requisition List</h2>
+            <br />
+            {list.map((value, key) => (
+                <div className="card" key={key}>
+                    <div className="card-body">
+                        <h5 className="card-title">
+                            Requisition {value.requisitionNo}
+                        </h5>
+                        <p className="card-text">
+                            Total Cost: {value.totalCost}
+                        </p>
+                        <p className="card-text">Status: {value.status}</p>
+                        <button
+                            className="btn btn-success"
+                            onClick={() => viewDetails(value.requisitionNo)}
+                        >
+                            View
+                        </button>
+                    </div>
+                </div>
+            ))}
         </div>
     );
 }
