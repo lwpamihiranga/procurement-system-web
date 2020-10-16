@@ -27,7 +27,7 @@ function SideMenu({ navName }) {
                 className={navName === 'inquire' ? 'active' : ''}
                 href="/inquire"
             >
-                Inquire
+                Enquiries
             </a>
             <a
                 className={navName === 'signout' ? 'active' : ''}
