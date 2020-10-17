@@ -11,6 +11,7 @@ function Header() {
     }, [type]);
 
     const handleLogOut = () => {
+        sessionStorage.clear();
         history.push('/');
     };
 
