@@ -19,7 +19,22 @@ function Invoice() {
     }, [url, id]);
 
     const handlePayment = () => {
-        alert('payment');
+        axios
+            .post(url.concat('/api/payments/'), {
+                paymentId: 'PAY'.concat(
+                    Math.floor(Math.random() * 10 ** 3).toString()
+                ),
+                paymentMethod: 'Cash',
+                invoice: invoice.invoiceId,
+                paidAmount: invoice.netAmount,
+            })
+            .then((res) => {
+                console.log(res.data);
+                alert('Payment has been made');
+            })
+            .catch((err) => {
+                console.log(err);
+            });
     };
 
     return (

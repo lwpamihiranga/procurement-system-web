@@ -109,9 +109,11 @@ function PurchaseOrder() {
                     </tr>
                 </tbody>
             </table>
-            <button className="btn btn-primary" onClick={handleDelivery}>
-                Create Delivery
-            </button>
+            {sessionStorage.getItem('type') === 'supplier' ? (
+                <button className="btn btn-primary" onClick={handleDelivery}>
+                    Create Delivery
+                </button>
+            ) : null}
         </div>
     );
 }

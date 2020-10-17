@@ -8,11 +8,9 @@ function GoodReceipt() {
     let { id } = useParams();
 
     const [receipt, setReceipt] = useState('');
-    // const [purchaseOrder, setPurchaseOrder] = useState('');
-    // const [supplier, setSupplier] = useState('');
     const [site, setSite] = useState('');
     const [delivery, setDelivery] = useState('');
-
+    const [supplier, setSupplier] = useState('');
     const [itemList, setItemList] = useState([]);
     const [total, setTotal] = useState('');
 
@@ -23,11 +21,9 @@ function GoodReceipt() {
                 console.log(res.data.purchaseOrder.purchaseOrderItems);
                 setItemList(res.data.purchaseOrder.purchaseOrderItems);
                 setReceipt(res.data);
-                // setPurchaseOrder(res.data.purchaseOrder);
-                // setSupplier(res.data.supplier);
                 setSite(res.data.site);
                 setDelivery(res.data.delivery);
-
+                setSupplier(res.data.supplier);
                 let total = 0;
                 res.data.purchaseOrder.purchaseOrderItems.forEach((item) => {
                     total = total + item.itemCount * item.item.itemPrice;
@@ -40,7 +36,24 @@ function GoodReceipt() {
     }, [url, id]);
 
     const handleDelivery = () => {
-        alert('handle');
+        axios
+            .post(url.concat('/api/invoices'), {
+                invoiceId: 'INV'.concat(
+                    Math.floor(Math.random() * 10 ** 3).toString()
+                ),
+                GoodsReceipt: receipt.receiptId,
+                Supplier: supplier.supplierCode,
+                AccountingStaffId: 'EMP21',
+                Description: 'Order invoice',
+                NetAmount: total,
+            })
+            .then((res) => {
+                console.log(res.data);
+                alert('Invoice created');
+            })
+            .catch((err) => {
+                console.log(err);
+            });
     };
 
     return (
