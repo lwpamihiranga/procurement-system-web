@@ -21,7 +21,7 @@ function Requisitions() {
     }, [url]);
 
     const viewDetails = (id) => {
-        history.push(`/requisitions/${id}`);
+        history.push(`/management/requisitions/${id}`);
     };
 
     return (

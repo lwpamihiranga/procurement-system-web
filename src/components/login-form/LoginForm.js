@@ -22,7 +22,7 @@ function LoginForm() {
         } else {
             if (userType === 'Managment Staff') {
                 sessionStorage.setItem('type', 'managementStaff');
-                history.push(`/requisitions`);
+                history.push(`/management`);
             } else if (userType === 'Supplier') {
                 sessionStorage.setItem('type', 'supplier');
                 history.push(`/supplier`);
