@@ -3,27 +3,33 @@ import { useParams } from 'react-router-dom';
 
 import axios from 'axios';
 
-function PurchaseOrder() {
+function GoodReceipt() {
     const url = process.env.REACT_APP_BACKEND_API;
     let { id } = useParams();
 
-    const [purchaseOrder, setPurchaseOrder] = useState('');
-    const [itemList, setItemList] = useState([]);
-    const [siteManager, setSiteManger] = useState('');
+    const [receipt, setReceipt] = useState('');
+    // const [purchaseOrder, setPurchaseOrder] = useState('');
+    // const [supplier, setSupplier] = useState('');
     const [site, setSite] = useState('');
+    const [delivery, setDelivery] = useState('');
+
+    const [itemList, setItemList] = useState([]);
     const [total, setTotal] = useState('');
 
     useEffect(() => {
         axios
-            .get(url.concat(`/api/purchaseOrders/${id}`))
+            .get(url.concat(`/api/goodsReceipts/${id}`))
             .then((res) => {
-                setPurchaseOrder(res.data);
-                setItemList(res.data.purchaseOrderItems);
-                setSiteManger(res.data.siteManager);
+                console.log(res.data.purchaseOrder.purchaseOrderItems);
+                setItemList(res.data.purchaseOrder.purchaseOrderItems);
+                setReceipt(res.data);
+                // setPurchaseOrder(res.data.purchaseOrder);
+                // setSupplier(res.data.supplier);
                 setSite(res.data.site);
-                console.log(res.data);
+                setDelivery(res.data.delivery);
+
                 let total = 0;
-                res.data.purchaseOrderItems.forEach((item) => {
+                res.data.purchaseOrder.purchaseOrderItems.forEach((item) => {
                     total = total + item.itemCount * item.item.itemPrice;
                 });
                 setTotal(total);
@@ -35,43 +41,27 @@ function PurchaseOrder() {
 
     const handleDelivery = () => {
         alert('handle');
-        axios
-            .post(url.concat(`/api/deliveries`), {
-                DeliveryId: 'DL'.concat(
-                    Math.floor(Math.random() * 10 ** 3).toString()
-                ),
-                SiteCode: site.siteCode,
-                PurchaseOrder: purchaseOrder.orderReference,
-                DeliveryStatus: 'Confirmed',
-            })
-            .then((res) => {
-                console.log(res.data);
-                alert('Delivery and Goods Receipt created');
-            })
-            .catch((err) => {
-                console.log(err);
-            });
     };
 
     return (
         <div className="container" style={{ marginLeft: 250 }}>
             <br />
-            <h2>Purchase Order {id}</h2>
+            <h2>Goods Receipt {id}</h2>
             <br />
             <table className="table table-striped table-hover">
                 <tbody>
                     <tr>
-                        <td>Order No</td>
-                        <td>{purchaseOrder.orderReference}</td>
+                        <td>Receipt ID</td>
+                        <td>{receipt.receiptId}</td>
                     </tr>
 
                     <tr>
-                        <td>Status</td>
-                        <td>{purchaseOrder.orderStatus}</td>
+                        <td>Date Delivered</td>
+                        <td>{receipt.dateDelivered}</td>
                     </tr>
                     <tr>
-                        <td>Site Manger</td>
-                        <td>{siteManager.staffId}</td>
+                        <td>Delivery No</td>
+                        <td>{delivery.deliveryId}</td>
                     </tr>
                     <tr>
                         <td>Site</td>
@@ -110,10 +100,10 @@ function PurchaseOrder() {
                 </tbody>
             </table>
             <button className="btn btn-primary" onClick={handleDelivery}>
-                Create Delivery
+                Create Invoice
             </button>
         </div>
     );
 }
 
-export default PurchaseOrder;
+export default GoodReceipt;

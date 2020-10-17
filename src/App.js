@@ -7,6 +7,8 @@ import RequisitionsPage from './pages/RequisitionsPage';
 import ApprovelsPage from './pages/ApprovelsPage';
 import InquirePage from './pages/InquirePage';
 import SignoutPage from './pages/SignoutPage';
+import SupplierPage from './pages/SupplierPage';
+import AccountingStaffPage from './pages/AccountingStaffPage';
 
 function App() {
     return (
@@ -29,6 +31,12 @@ function App() {
                 </Route>
                 <Route path="/signout">
                     <SignoutPage />
+                </Route>
+                <Route path="/supplier">
+                    <SupplierPage />
+                </Route>
+                <Route path="/accounting">
+                    <AccountingStaffPage />
                 </Route>
             </Switch>
         </Router>
