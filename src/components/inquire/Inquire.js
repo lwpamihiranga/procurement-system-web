@@ -24,9 +24,7 @@ function Inquire() {
             .delete(url.concat('/api/enquiries/', id))
             .then((res) => {
                 alert('Enquiry Deleted!');
-                setList(
-                    list.filter((item) => item.enquiryId !== id)
-                );
+                setList(list.filter((item) => item.enquiryId !== id));
             })
             .catch((err) => {
                 console.log(err);
@@ -34,7 +32,7 @@ function Inquire() {
     };
 
     const viewDetails = (id) => {
-        history.push(`/inquire/${id}`);
+        history.push(`/management/inquire/${id}`);
     };
 
     return (
@@ -49,10 +47,12 @@ function Inquire() {
                             Enquiry No : {value.enquiryId}
                         </h5>
                         <p className="card-text">
-                            Order Reference No: {value.orderReference.orderReference}
+                            Order Reference No:{' '}
+                            {value.orderReference.orderReference}
                         </p>
                         <p className="card-text">
-                           Site Manager Id: {value.orderReference.siteManager.staffId}
+                            Site Manager Id:{' '}
+                            {value.orderReference.siteManager.staffId}
                         </p>
                         <p className="card-text">
                             Enquiry Status: {value.enquiryStatus}
@@ -64,7 +64,7 @@ function Inquire() {
                             View
                         </button>
                         <button
-                            style={{marginLeft:20}}
+                            style={{ marginLeft: 20 }}
                             className="btn btn-danger"
                             onClick={() => deleteEnquiry(value.enquiryId)}
                         >

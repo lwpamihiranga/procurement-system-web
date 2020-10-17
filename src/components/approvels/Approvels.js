@@ -12,7 +12,8 @@ function Approvels() {
         axios
             .get(url.concat('/api/purchaseOrders'))
             .then((res) => {
-                setList(res.data);
+                setList(res.data.filter((e) => e.orderStatus === 'Approved'));
+                //setList(res.data);
             })
             .catch((err) => {
                 console.log(err);
@@ -21,7 +22,7 @@ function Approvels() {
 
     const viewDetails = (id) => {
         console.log('View order ', id);
-        history.push(`/approvels/${id}`);
+        history.push(`/management/approvels/${id}`);
     };
 
     return (
