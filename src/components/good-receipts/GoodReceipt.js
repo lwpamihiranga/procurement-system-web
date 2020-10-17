@@ -8,8 +8,6 @@ function GoodReceipt() {
     let { id } = useParams();
 
     const [receipt, setReceipt] = useState('');
-    // const [purchaseOrder, setPurchaseOrder] = useState('');
-    // const [supplier, setSupplier] = useState('');
     const [site, setSite] = useState('');
     const [delivery, setDelivery] = useState('');
 
@@ -23,8 +21,6 @@ function GoodReceipt() {
                 console.log(res.data.purchaseOrder.purchaseOrderItems);
                 setItemList(res.data.purchaseOrder.purchaseOrderItems);
                 setReceipt(res.data);
-                // setPurchaseOrder(res.data.purchaseOrder);
-                // setSupplier(res.data.supplier);
                 setSite(res.data.site);
                 setDelivery(res.data.delivery);
 

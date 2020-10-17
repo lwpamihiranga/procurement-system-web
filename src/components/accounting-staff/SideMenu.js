@@ -2,7 +2,6 @@ import React from 'react';
 import '../side-menu/SideMenu.css';
 
 function SideMenu({ navName }) {
-    // console.log(navName);
     return (
         <div className="sidebar">
             <a

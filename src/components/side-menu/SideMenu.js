@@ -2,7 +2,6 @@ import React from 'react';
 import './SideMenu.css';
 
 function SideMenu({ navName }) {
-    // console.log(navName);
     return (
         <div className="sidebar">
             <a
@@ -21,19 +20,13 @@ function SideMenu({ navName }) {
                 className={navName === 'approvels' ? 'active' : ''}
                 href="/approvels"
             >
-                Approvels
+                Approvals
             </a>
             <a
                 className={navName === 'inquire' ? 'active' : ''}
                 href="/inquire"
             >
-                Enquiries
-            </a>
-            <a
-                className={navName === 'signout' ? 'active' : ''}
-                href="/signout"
-            >
-                Sign Out
+                Inquiries
             </a>
         </div>
     );

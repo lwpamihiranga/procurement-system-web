@@ -1,14 +1,13 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import './App.css';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import LoginPage from './pages/LoginPage';
 import DashboardPage from './pages/DashboardPage';
 import RequisitionsPage from './pages/RequisitionsPage';
 import ApprovelsPage from './pages/ApprovelsPage';
 import InquirePage from './pages/InquirePage';
-import SignoutPage from './pages/SignoutPage';
 import SupplierPage from './pages/SupplierPage';
 import AccountingStaffPage from './pages/AccountingStaffPage';
+import './App.css';
 
 function App() {
     return (
@@ -28,9 +27,6 @@ function App() {
                 </Route>
                 <Route path="/inquire">
                     <InquirePage />
-                </Route>
-                <Route path="/signout">
-                    <SignoutPage />
                 </Route>
                 <Route path="/supplier">
                     <SupplierPage />
