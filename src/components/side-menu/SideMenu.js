@@ -5,12 +5,6 @@ function SideMenu({ navName }) {
     return (
         <div className="sidebar">
             <a
-                className={navName === 'dashboard' ? 'active' : ''}
-                href="/dashboard"
-            >
-                Dashboard
-            </a>
-            <a
                 className={navName === 'requisitions' ? 'active' : ''}
                 href="/management/requisitions"
             >
